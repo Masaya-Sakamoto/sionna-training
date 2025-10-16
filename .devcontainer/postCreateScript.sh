@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# # install astral-uv
-# curl -LsSf https://astral.sh/uv/install.sh | sh
-# PATH="/home/ubuntu/.local/bin:$PATH"
+# Install nbstripout to clean notebook outputs on commit
+nbstripout --install --attributes .gitattributes
 
 # Initialize repository as an astral-uv project if not already initialized
 if [ ! -f "./pyproject.toml" ]; then

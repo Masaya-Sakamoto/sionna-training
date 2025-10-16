@@ -19,13 +19,21 @@ RUN apt-get update && \
        rr \
        python3-dev \
        # python3-pip for conf template generation
-       python3-pip && \
-    rm -rf /var/lib/apt/lists/*
+       python3-pip \
+       pipx \
+    && rm -rf /var/lib/apt/lists/*
 
 USER ubuntu
+
+# Set PATH for user
+ENV PATH="/home/ubuntu/.local/bin:$PATH"
+
+# install nbstripout
+RUN python3 -m pipx ensurepath
+RUN pipx install nbstripout
+
 # install astral uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/home/ubuntu/.local/bin:$PATH"
 
 # check nvidia-smi
 RUN echo $(nvidia-smi) > ~/nvidia-smi.out.txt
