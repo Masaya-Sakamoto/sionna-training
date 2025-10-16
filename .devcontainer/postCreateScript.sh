@@ -3,6 +3,10 @@
 # Install nbstripout to clean notebook outputs on commit
 nbstripout --install --attributes .gitattributes
 
+# Install Nvidia OptiX SDK
+chmod +x .devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh
+.devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh ----skip-license
+
 # Initialize repository as an astral-uv project if not already initialized
 if [ ! -f "./pyproject.toml" ]; then
     uv init

@@ -8,6 +8,12 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
        #gcc needed for build_oai
        build-essential \
+       llvm \
+       clang \
+       libclang-dev \
+       lld \
+       cmake \
+       wget \
        curl \
        git \
        gh \
@@ -21,7 +27,12 @@ RUN apt-get update && \
        # python3-pip for conf template generation
        python3-pip \
        pipx \
+       sudo \
     && rm -rf /var/lib/apt/lists/*
+
+# Create a non-root user to avoid permission issues
+RUN usermod -aG sudo ubuntu && \
+    echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER ubuntu
 
