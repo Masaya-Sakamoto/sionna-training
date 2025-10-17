@@ -1,11 +1,16 @@
 #!/bin/bash
 
+WORKSPACE_DIR=$(pwd)
+
 # Install nbstripout to clean notebook outputs on commit
 nbstripout --install --attributes .gitattributes
 
 # Install Nvidia OptiX SDK
-chmod +x .devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh
-.devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh ----skip-license
+cp .devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh ~/
+cd ~/
+chmod +x NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh
+./NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh --skip-license
+cd $WORKSPACE_DIR
 
 # Initialize repository as an astral-uv project if not already initialized
 if [ ! -f "./pyproject.toml" ]; then
