@@ -5,13 +5,6 @@ WORKSPACE_DIR=$(pwd)
 # Install nbstripout to clean notebook outputs on commit
 nbstripout --install --attributes .gitattributes
 
-# Install Nvidia OptiX SDK
-cp .devcontainer/NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh ~/
-cd ~/
-chmod +x NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh
-./NVIDIA-OptiX-SDK-9.0.0-linux64-x86_64.sh --skip-license
-cd $WORKSPACE_DIR
-
 # Initialize repository as an astral-uv project if not already initialized
 if [ ! -f "./pyproject.toml" ]; then
     uv init
@@ -25,10 +18,6 @@ fi
 # Activate the virtual environment and install dependencies
 source ./.venv/bin/activate
 uv sync
-uv add numpy pandas matplotlib jupyterlab sionna
 
 # add astral-uv venv activation to bashrc
 echo 'source ./.venv/bin/activate' >> ~/.bashrc
-
-# check nvidia-smi
-echo $(nvidia-smi) > nvidia-smi.out.txt

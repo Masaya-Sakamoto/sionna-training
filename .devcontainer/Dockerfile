@@ -46,8 +46,5 @@ RUN pipx install nbstripout
 # install astral uv
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# check nvidia-smi
-RUN echo $(nvidia-smi) > ~/nvidia-smi.out.txt
-
 # Set working directory
 WORKDIR /workspace
